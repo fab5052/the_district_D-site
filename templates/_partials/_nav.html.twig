@@ -1,0 +1,137 @@
+
+    {# <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" #}
+{# {% block header %} #}
+<header>
+{% block stylesheets %}	
+<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> #}
+<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+
+{% endblock %}
+
+
+
+ <nav class="col-12 d-flex justify-content-between">
+
+      <a href="{{ path('app_accueil') }}" class="nav-icon" aria-label="homepage" aria-current="page">
+        <img class="logo" src="image/the_district_brand/logo_transparent.png">
+
+      </a>
+
+      <div class="main-navlinks">
+        <bouton type="button" class=" toggle menu-markdown" aria-label="Toggle Navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+
+          </button>
+
+      </div>
+      <div class="navlinks-container col-sm-6 d-flex justify-content-center vertical-align-middle ">
+
+               
+                    <a class="nav-link" href="{{ path('app_accueil') }}">Accueil</a>
+              
+                    <a class="nav-link" href="{{ path('app_plat') }}">Plats</a>
+                
+               {# <li class="nav-item">
+	               <a class="nav-link" href="{{ path('app_plat_cat') }}">Plats par catégories</a> #}
+              
+                    <a class="nav-link" href="{{ path('app_categorie') }}">Catégories</a>
+              
+                    <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+              
+                    <a class="nav-link" href="{{ path('app_profile') }}">Profile</a>
+                </li>
+{# <li class="nav-item">
+	<a class="nav-link" href="{{ path('app_panier') }}">Login</a>
+</li> #}
+
+          
+      </div>
+
+<div class="nav-authentication col-sm-3 d-flex">
+
+<div class="shopping d-flex " >
+<a href="{{ path('app_cart') }}">
+	<i class="fa fa-shopping-cart red "></i>
+	<span class="badge badge-red"></span>
+</a>
+
+       
+</div>
+<div class="sign-btns  ">
+	<a href="{{ path('app_login') }}">
+
+  <img src="image/user.svg" class="user-toggler" aria-label="Sign in page" alt="user icon">
+        
+          <i class="fa fa-sign-in" aria-hidden="true"></i></a> 
+         </div>
+
+     <div id="search">
+          <form  class="search" action="results.php" method="GET" accept-charset="utf-8">
+          <input type="text" name="input" class="input" placeholder="Search" />
+          <button type="reset" class="search " id="search-button">
+          </form>
+       
+        </button>
+        </div>
+        </div>
+    </nav>
+
+
+
+
+
+  <div class="slider-container col-sm-12 w-100 top-0 m-0 p-0">
+  <div id="slider">
+    <img src="image/bg.jpg" alt="Image 1" />
+    <img src="image/bg1.jpeg" alt="Image 2" />
+    <img src="image/bg2.jpeg" alt="Image 3" />
+    <img src="image/bg3.jpeg" alt="Image 4" />
+</div>
+</div>
+
+{% block javascripts %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="js/flux.min.js"></script>
+<script>
+      $(function() {
+        if (!flux.browser.supportsTransitions) {
+            alert("Flux Slider requires a browser that supports CSS3 transitions");
+        }
+
+        window.f = new flux.slider('#slider', {
+            pagination: false
+         });
+    });
+
+</script>
+{# <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script> #}
+<script src="js/toggle.js"></script>
+
+
+
+
+	{# {% endblock %} #}
+    {% endblock %}
+
+</header>
+
+
+
+
+

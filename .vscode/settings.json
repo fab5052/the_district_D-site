@@ -1,0 +1,6 @@
+{
+    "ocaml.sandbox": {
+        "kind": "global"
+    },
+    "php.version": "8.2"
+}

@@ -1,0 +1,95 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+# CatalogueController
+
+# app_catalogue:
+#     path: /
+#     controller : App\Controller\CatalogueController::index
+
+# app_plat:
+#     path: /
+#     controller : App\Controller\CatalogueController::index
+
+# app_catalogue_add:
+#     path: /add
+#     controller : App\Controller\CatalogueController::add
+
+app_cart__form:
+    path: /_form
+    controller : App\Controller\CartController::_form
+
+
+# UtilisateurController
+
+
+app_admin_utilisateur:
+    path: /utilisateur
+    controller : App\Controller\Admin\UtilisateurController::index
+
+
+# MenuController
+
+
+app_accueil:
+    path: /
+    controller : App\Controller\MenuController::index
+
+
+app_categorie:
+    path: /categorie 
+    controller : App\Controller\MenuController::categorie
+
+app_plat :
+    path: /plat 
+    controller : App\Controller\MenuController::plat
+
+app_plat_cat :
+    path : /plat
+    controller : App\Controller\MenuController::plat_cat
+
+
+# CartController
+
+
+app_cart:
+    path: /cart
+    controller : App\Controller\CartController::index
+
+# ContactController
+
+
+app_contact : 
+    path : /contact 
+    controller : App\Controller\ContactController::mail
+
+
+# SecurityController
+
+
+app_login : 
+    path : /login
+    controller : App\Controller\SecurityController::login
+
+
+# RegistrationController
+
+
+app_register :
+    path : /inscription
+    controller : App\Controller\RegistrationController::register
+
+
+# ProfileController
+
+
+app_profile :
+    path : /profile
+    controller : App\Controller\ProfileController::index
+
+app_detail_profile :
+    path : /detail
+    controller : App\Controller\ProfileController::profile
