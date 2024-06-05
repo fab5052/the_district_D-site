@@ -19,16 +19,19 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Security\UserAuthenticator
-            #target: form_login
+        target_path:
+            custom_authenticators: 
+            #login: 
+                path: App\Security\UserAuthenticator
+                #custom_authenticator: 
             logout:
                 path: app_logout
                 #target: app_login
-            remember_me:
-                secret: '%kernel.secret%'
-                lifetime: 604800
-                path: /
-                always_remember_me: true
+            #remember_me:
+              #  secret: '%kernel.secret%'
+               # lifetime: 604800
+             #   path: /
+              #  always_remember_me: true
             
 
     access_control:

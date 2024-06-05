@@ -33,6 +33,7 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $utilisateur::class));
         }
 
+        $utilisateur->getId();
         $utilisateur->setPassword($newHashedPassword);
         $this->getEntityManager()->persist($utilisateur);
         $this->getEntityManager()->flush();

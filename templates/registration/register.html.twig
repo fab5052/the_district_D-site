@@ -4,28 +4,8 @@
 
 {% block body %}
 
-{% block form_widget_simple %}
-	{# ...content here... #}
-	<input
-	id="{{ id }}" name="{{ full_name }}" type="{{ type }}" {# ...other attributes here... #}/>
-{# ...content here... #}
-{% endblock form_widget_simple %}
 
-{% block checkbox_widget %}
-	<input id="{{ id }}" name="{{ full_name }}" type="radio" {# ...other attributes here... #}/>
-{% endblock checkbox_widget %}
 
-{% block radio_widget %}
-	<input id="{{ id }}" name="{{ full_name }}" type="radio" {# ...other attributes here... #}/>
-{% endblock radio_widget %}
-
-{% block button_widget %}
-	{# ...content here... #}
-	<button
-		id="{{ id }}" name="{{ full_name }}" type="{{ type }}" {# ...other attributes here... #}>{# ...content here... #}
-	</button>
-	{# ...content here... #}
-{% endblock button_widget %}
 
 
 {% block main %} 
@@ -40,9 +20,7 @@
 
    
 
-{% if error %}
-	<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
+
 
 {% if app.user and app.user.isVerified == false %}
 
@@ -51,6 +29,7 @@
 		{{ app.user.userIdentifier }},
 	</div>
 {% endif %}
+
 
 
 
@@ -85,6 +64,7 @@ value="76abe25.hoXmkj1H8uHJy2j8MLuLmUUAqZK0WepKGfGWVp0Fviw.5P2lw28FxIS5rQKKWO_nw
 
 
 {{ form_end(registrationForm) }}
+
 
     
 </div></div>

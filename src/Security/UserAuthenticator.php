@@ -46,7 +46,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             ]
         );
     }
-//#[IsGranted("ROLE_USER")]
+#[IsGranted("ROLE_USER")]
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {

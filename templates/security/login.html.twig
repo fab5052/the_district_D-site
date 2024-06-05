@@ -93,6 +93,20 @@ flashing = setInterval("neon()", flashspeed)
 beginneon()
 	</script>
 </h1>
+{% block form_widget_simple %}
+	{# ...content here... #}
+	<input
+	id="{{ id }}" name="{{ full_name }}" type="{{ type }}" {# ...other attributes here... #}/>
+{# ...content here... #}
+{% endblock form_widget_simple %}
+
+{% block button_widget %}
+	{# ...content here... #}
+	<button
+		id="{{ id }}" name="{{ full_name }}" type="{{ type }}" {# ...other attributes here... #}>{# ...content here... #}
+	</button>
+	{# ...content here... #}
+{% endblock button_widget %}
 
 	<form method="post">
 
