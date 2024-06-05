@@ -9,24 +9,22 @@
 
 <div class="container d-flex justify-content-around mt-5 mb-5">
 
-{% if not app.user %}
-    <div class="card  col-3">
-        <h3>Connexion</h3>
-            <div class="card-body">
-            <p>Vous avez deja un compte connectez vous des maintenant !!!</p>
-            <a href="{{path ('app_login')}}" class="btn btn-link d-flex justify-content-center" type="button">Se Connecter</a>
-            </div>
-    </div>
+{# {% if app.user and app.user.isVerified == false %}
 
-    <div class="card col-3">
-        <h3>Inscription</h3>
-            <div class="card-body">
-                <p>Vous n'avez toujours pas de compte pour en cree un c'est juste ici !!!</p>
-                <a href="{{path ('app_register')}}" class="btn btn-link d-flex justify-content-center" type="button">S'inscrire</a>
-            </div>
-    </div>
-    {% endif %}
+
+	<div class="alert alert-warning alert-dismissible" role="alert">
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		<div class="alert-message">
+			<strong>Votre compte n'est pas activé</strong>,
+			<a href="{{ path('resend_verif') }}">renvoyer le lien d'activation</a>
+		</div>
+	</div>
+{% endif %} #}
 {% if app.user and app.user.isVerified == false %}
+
+
+
+
 
     
     <div class="card col-3">
@@ -48,4 +46,23 @@
 <a  href="{{path ('app_logout')}}"class="btn btn-link">Se Deconnecter</a>
 </div>
 {% endif %}
+
+{% if not app.user %}
+	<div class="card  col-3">
+		<h3>Connexion</h3>
+		<div class="card-body">
+			<p>Vous avez deja un compte connectez vous des maintenant !!!</p>
+			<a href="{{path ('app_login')}}" class="btn btn-link d-flex justify-content-center" type="button">Se Connecter</a>
+		</div>
+	</div>
+
+	<div class="card col-3">
+		<h3>Inscription</h3>
+		<div class="card-body">
+			<p>Vous n'avez toujours pas de compte pour en cree un c'est juste ici !!!</p>
+			<a href="{{path ('app_register')}}" class="btn btn-link d-flex justify-content-center" type="button">S'inscrire</a>
+		</div>
+	</div>
+{% endif %}
+
 {% endblock %}

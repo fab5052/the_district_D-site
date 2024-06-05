@@ -47,11 +47,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
+use App\Entity\Utilisateur;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UtilisateurRepository;
+use App\Repository\ProfileRepository;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/profil', name: 'profile_')]
+ #[IsGranted("ROLE_USER")]
+#[Route('/profile', name: 'profile_')]
 class ProfileController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -62,10 +69,10 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/commandes', name: 'orders')]
-    public function orders(): Response
+    #[Route('/commandes', name: 'profile')]
+    public function commande(): Response
     {
-        return $this->render('profile/index.html.twig', [
+        return $this->render('profile/profile.html.twig', [
             'controller_name' => 'Commandes de l\'utilisateur',
         ]);
     }

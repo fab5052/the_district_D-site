@@ -130,7 +130,7 @@ class TheDistrictFixtures extends Fixture
         $admin->setCp('80850');
         $admin->setVille('Berto');
         $admin->setPassword(
-            $this->passwordEncoder->hashPassword($admin, 'admin')
+            $this->passwordEncoder->hashPassword($admin, 'fb975052')
         );
         $admin->setRoles(['ROLE_ADMIN']);
         

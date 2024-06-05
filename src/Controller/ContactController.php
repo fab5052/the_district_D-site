@@ -18,7 +18,7 @@ class ContactController extends AbstractController
 
 
     #[IsGranted("ROLE_USER")]
-    public function mail(Request $request,SendMailService $ms)
+    public function mail(Request $request,MailService $ms)
     {
 
         $form = $this->createForm(ContactFormType::class);

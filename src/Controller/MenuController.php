@@ -58,20 +58,37 @@ class MenuController extends AbstractController
 
     public function plat_cat(EntityManagerInterface $em, Request $request, string $libelle): Response
     {
+        $categorie = $em->getRepository(Categorie::class)->find($libelle);
+
         $libelle = $request->attributes->get('libelle');
 
+        if (!$categorie) {
+        return new Response('Category not found', 404);
+    }
 
-        $categorie = $em->getRepository(Categorie::class)->findOneBy(['libelle' => $libelle]);
+
+        //$categorie = $em->getRepository(Categorie::class)->findOneBy(['libelle' => $libelle]);
 
 
         $plats = $categorie->getPlats();
+        $data =[];
 
+
+
+       foreach ($plats as $plat) {
+        $data[] = [
+            'libelle' => $plat->getLibelle(),
+            'description' => $plat->getDescription(),
+        ];
+    }
+
+  //  return new Response(['plats' -> $data]);
         return $this->render('menu/plat_cat.html.twig', [
             'controller_name' => 'MenuController',
             'categorie' => $categorie,
-            'plats' => $plats,
+            'plats' => $plat
 
-        ]);
+       ]);
     }
 }
 

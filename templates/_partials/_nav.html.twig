@@ -69,16 +69,21 @@
        
 </div>
 <div class="sign-btns  ">
-	<a href="{{ path('app_login') }}">
+	<a href="{{ path('app_profile') }}">
 
   <img src="image/user.svg" class="user-toggler" aria-label="Sign in page" alt="user icon">
         
-          <i class="fa fa-sign-in" aria-hidden="true"></i></a> 
+<a href="{{ path('app_login') }}">
+	<i class="fa fa-sign-in" aria-hidden="true"></i>
+</a>
+
          </div>
 
      <div id="search">
           <form  class="search" action="results.php" method="GET" accept-charset="utf-8">
-          <input type="text" name="input" class="input" placeholder="Search" />
+<input type="text" name="input" class="input" placeholder="Search"/>
+{# <a href="{{ path('app_search') }}"> #}
+
           <button type="reset" class="search " id="search-button">
           </form>
        

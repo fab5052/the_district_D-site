@@ -22,18 +22,7 @@
 
 
 
-{% if app.user and app.user.isVerified == false %}
-
-	<div class="mb-3">
-		You are logged in as
-		{{ app.user.userIdentifier }},
-	</div>
-{% endif %}
-
-
-
-
-    {{ form_errors(registrationForm) }}
+{{ form_errors(registrationForm) }}
 {% for flash_error in app.flashes('verify_email_error') %}
 	<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 {% endfor %}
@@ -52,14 +41,24 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+        {{ form_row(registrationForm._token) }}
+
+
+<div>
+	<p>Complexité du mot de passe :
+		<span id="entropy" class="text-red">Très faible</span>
+		(la complexité minimale acceptée est "Fort")</p>
+</div>
+
         {{ form_row(registrationForm.agreeTerms) }}
+
 
        
 <button class="btn btn-form btn-primary" type="submit">Register</button>
-<div>
+{# <div>
 <input name="_token" type="hidden"
 value="76abe25.hoXmkj1H8uHJy2j8MLuLmUUAqZK0WepKGfGWVp0Fviw.5P2lw28FxIS5rQKKWO_nw30y2cT7aKEHK8TwZsJq9RXhzonoc3eVio-6MQ"/>
-</div>
+</div> #}
 
 
 

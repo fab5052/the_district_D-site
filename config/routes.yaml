@@ -48,8 +48,9 @@ app_plat :
     controller : App\Controller\MenuController::plat
 
 app_plat_cat :
-    path : /plat
+    path : /plat_cat/{id}
     controller : App\Controller\MenuController::plat_cat
+    methods : GET
 
 
 # CartController
@@ -93,3 +94,8 @@ app_profile :
 app_detail_profile :
     path : /detail
     controller : App\Controller\ProfileController::profile
+
+
+# app_search :
+#     path: /search
+#     controller : App\Controller\SearchController::search

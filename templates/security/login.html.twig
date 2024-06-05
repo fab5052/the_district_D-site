@@ -21,92 +21,24 @@
 {% block main %} 
 <main class="main-content ">
 <h1>
-	<script langage="JavaScript1.2">
-		var message = "The District" //
-var neonbasecolor = "#8fe9e57c;" // couleur de base du texte
-var neontextcolor = "#9ac74762"
-var neontextcolor2 = "#610606"
-var flashspeed = 200 // vitesse du flashing en millisecondes
-var flashingletters = 3 // nombre de lettres qui flashent en neontextcolor
-var flashingletters2 = 1 // nombre de lettres qui flashent en neontextcolor2 (0 pour désactiver)
-var flashpause = 0
-// pause entre les cycles de flashing en millisecondes
-// /Ne rien toucher sous cette ligne///
-var n = 0
-if (document.all || document.getElementById) {
-document.write('<font color="' + neonbasecolor + '">')
-for (m = 0; m < message.length; m ++) 
-document.write('<span id="neonlight' + m + '">' + message.charAt(m) + '</span>')
-
-
-
-document.write('</font>')
-} else 
-document.write(message)
-
-
-
-
-
-function crossref(number) {
-var crossobj = document.all ? eval("document.all.neonlight" + number) : document.getElementById("neonlight" + number)
-return crossobj
-}
-
-function neon() { // Change all letters to base color
-if (n == 0) {
-for (m = 0; m < message.length; m ++) 
-crossref(m).style.color = neonbasecolor
-
-
-
-}
-// cycle through and change individual letters to neon color
-crossref(n).style.color = neontextcolor
-if (n > flashingletters - 1) 
-crossref(n - flashingletters).style.color = neontextcolor2
-
-
-
-if (n > (flashingletters + flashingletters2) - 1) 
-crossref(n - flashingletters - flashingletters2).style.color = neonbasecolor
-
-
-
-if (n < message.length - 1) 
-n++
- else {
-n = 0
-clearInterval(flashing)
-setTimeout("beginneon()", flashpause)
-return
-}
-}
-
-function beginneon() {
-if (document.all || document.getElementById) 
-flashing = setInterval("neon()", flashspeed)
-
-
-
-}
-beginneon()
+	<script langage="JavaScript1.2" src="js/slogan.js">
+		
 	</script>
 </h1>
+{#
 {% block form_widget_simple %}
-	{# ...content here... #}
-	<input
-	id="{{ id }}" name="{{ full_name }}" type="{{ type }}" {# ...other attributes here... #}/>
-{# ...content here... #}
-{% endblock form_widget_simple %}
+	
+	 <input
+	id="{{ id }}" name="{{ full_name }}" type="{{ type }}" {# ...other attributes here... #}>
 
-{% block button_widget %}
-	{# ...content here... #}
-	<button
-		id="{{ id }}" name="{{ full_name }}" type="{{ type }}" {# ...other attributes here... #}>{# ...content here... #}
-	</button>
-	{# ...content here... #}
-{% endblock button_widget %}
+{# {% endblock form_widget_simple %}  #}
+
+{# {% block button_widget %} #}
+	
+	{# <button
+		id="{{ id }}" name="{{ full_name }}" type="{{ type }}" {# ...other attributes here... >      
+	</button> #}
+{# {% endblock button_widget %}  #}
 
 	<form method="post">
 
@@ -115,16 +47,16 @@ beginneon()
 	
     <div class="row">
 	<div class="col-sm-12 position-relative justify-content-center">
-        {# <label for="inputEmail" class="label ">Email :</label>
+        <label for="inputEmail" class="label ">Email :</label>
         <input type="email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
     </div>
     <div class="form-group mb-3">
         <label for="inputPassword" class="label">Mot de passe :</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required> #}
-        <label for="username">Email</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        {# <label for="username">Email</label>
         <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
         <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required> #}
 
         <input type="hidden" name="_csrf_token"
                value="{{ csrf_token('authenticate') }}">
