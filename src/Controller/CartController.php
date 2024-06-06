@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
-    #[IsGranted("ROLE_USER")]
+   // #[IsGranted("ROLE_USER")]
 #[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
 {

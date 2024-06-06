@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class MenuController extends AbstractController
 {
@@ -56,41 +58,58 @@ class MenuController extends AbstractController
     }
 
 
-    public function plat_cat(EntityManagerInterface $em, Request $request, string $libelle): Response
-    {
-        $categorie = $em->getRepository(Categorie::class)->find($libelle);
+public function getPlatsByCategorie(EntityManagerInterface $em, $id): JsonResponse
+{
+    $categorie = $em->getRepository(Categorie::class)->find($id);
 
-        $libelle = $request->attributes->get('libelle');
-
-        if (!$categorie) {
-        return new Response('Category not found', 404);
+    if (!$categorie) {
+        return new JsonResponse(['error' => 'Category not found'], 404);
     }
 
+    $plats = $categorie->getPlats();
+    $data = [];
 
-        //$categorie = $em->getRepository(Categorie::class)->findOneBy(['libelle' => $libelle]);
-
-
-        $plats = $categorie->getPlats();
-        $data =[];
-
-
-
-       foreach ($plats as $plat) {
+    foreach ($plats as $plat) {
         $data[] = [
-            'libelle' => $plat->getLibelle(),
+            'name' => $plat->getLibelle(),
             'description' => $plat->getDescription(),
         ];
     }
 
-  //  return new Response(['plats' -> $data]);
-        return $this->render('menu/plat_cat.html.twig', [
-            'controller_name' => 'MenuController',
-            'categorie' => $categorie,
-            'plats' => $plat
-
-       ]);
-    }
+    return new JsonResponse(['plats' => $data]);
 }
+}
+
+//     public function plat_cat(EntityManagerInterface $em, Request $request, string $libelle): Response
+//     {
+//         $libelle = $request->attributes->get('libelle');
+
+
+//         $categorie = $em->getRepository(Categorie::class)->findOneBy(['libelle' => $libelle]);
+
+
+//         $plats = $categorie->getPlats();
+
+//         return $this->render('menu/plat_cat.html.twig', [
+//             'controller_name' => 'MenuController',
+//             'categorie' => $categorie,
+//             'plats' => $plats,
+
+//         ]);
+//     }  
+// }
+
+
+
+//     //return new Response(['plat_cat' -> $data]);
+//         return $this->render('menu/plat_cat.html.twig', [
+//             'controller_name' => 'MenuController',
+//             'categorie' => $categorie,
+//             'plat_cat' => $plats
+
+//        ]);
+//     }
+// }
 
 
 

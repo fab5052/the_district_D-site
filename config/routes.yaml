@@ -47,10 +47,15 @@ app_plat :
     path: /plat 
     controller : App\Controller\MenuController::plat
 
-app_plat_cat :
-    path : /plat_cat/{id}
-    controller : App\Controller\MenuController::plat_cat
-    methods : GET
+# app_plat_cat :
+#     path : /plat_cat/{libelle}
+#     controller : App\Controller\MenuController::plat_cat
+#     methods : GET
+
+get_plats_by_categorie:
+    path: /get-plats-by-categorie/{id}
+    controller: App\Controller\MenuController::getPlatsByCategorie
+    methods: GET
 
 
 # CartController

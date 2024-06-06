@@ -4,9 +4,113 @@
 {% endblock %}
 
 {% block body %}
-
 	{% block stylesheets %}
-		{# <link rel="stylesheet" href="{{ asset('css/style.css')}}"> #}
+
+
+		<style>
+			#plats-container {
+				transition: opacity 0.5s ease-in-out;
+				opacity: 0;
+				max-height: 0;
+				overflow: hidden;
+			}
+
+			#plats-container.show {
+				opacity: 1;
+				max-height: 1000px; /* Adjust based on expected content */
+			}
+		</style>
+	{% endblock %}
+
+	<div class="container-fluid">
+		<div class="row">
+			<ul class="accordion-group" id="accordion">
+				{% for categorie in categories %}
+					<li>
+						<a href="#" class="categorie-link" data-categorie-id="{{ categorie.id }}">
+							<img src="{{ asset(categorie.image) }}" class="categorie-image">
+							<div class="accordion-overlay cards">
+								<h2>{{ categorie.libelle | upper }}</h2>
+<button class="btn-primary p-1">Plats</button>
+
+							</div>
+							
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+
+<div id="plats-container" class=" card">
+
+
+		
+<div class="card-body">
+{# <img src="{{ asset(plat.image) }}" style=" object-fit: cover;"> #}
+
+
+						{# <h5 class="card-title">{{ plat.libelle }}</h5>
+						<p class="card-text">{{ plat.description }}</p> #}
+					</div>
+				</div>	
+		
+	
+
+	{% block javascripts %}
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+const links = document.querySelectorAll('.categorie-link');
+const platsContainer = document.getElementById('plats-container');
+
+links.forEach(link => {
+link.addEventListener('click', function (event) {
+event.preventDefault();
+const categorieId = this.getAttribute('data-categorie-id');
+fetchPlats(categorieId);
+});
+});
+
+function fetchPlats(categorieId) {
+fetch (`/get-plats-by-categorie/${categorieId}`).then(response => response.json()).then(data => {
+platsContainer.innerHTML = '';
+data.plats.forEach(plat => {
+const platElement = document.createElement('div');
+  platElement.innerHTML = `
+      <div class="card">
+	     <div class="card-body"><img src='${plat.image}'>
+	    	 <h5 class="card-title">${plat.name}</h5>
+		     <p class="card-text">${plat.description}</p>
+<h5>${plat.prix}
+	€</h5>
+<div class='button'>
+	<button class='btn btn-link'>Ajouter au Panier:
+<a href="{{ path('app_cart') }}"></button>
+
+
+	   </div>
+      </div>
+   `;
+
+platsContainer.appendChild(platElement);
+});
+platsContainer.classList.add('show');
+}).catch(error => console.error('Error fetching plats:', error));
+}
+});
+		</script>
+	{% endblock %}
+{% endblock %}
+
+
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Catégories
+{% endblock %}
+
+ {% block body %}
+
+	
 	{% endblock %}
 
 
@@ -16,72 +120,75 @@
 		<ul class="accordion-group" id="accordion">
 			{% for categorie in categories %}
 				<li>
+{% for plat_cat in plat %}
 
-					<img src="{{ asset(categorie.image) }}">
-					<div class="accordion-overlay cards">
-						<h2>{{ categorie.libelle }}</h2>
-					</div>
-
-				{% endfor %}
-				{# <section class="hidden-xs">
-				                  <article>
-				                    <p>Rual and rustic</p>
-				                  </article>
-				                </section> #}
-			</li>
-		</ul>
-	</div>
-</div>
-{% for plats in plat %}
-
-<div
-	id="plats-container" class="card">
-  </div>
+<a href="{{ path('app_categorie', {'libelle': plat.libelle}) }}">
 {% endfor %}
 
+	<img src="{{ asset(categorie.image) }}" class="categorie-image">
+	<div class="accordion-overlay cards">
+		{# <h2>{{ categorie.libelle | upper }}</h2> #
+		<button class="btn-primary p-1">Plats</button>
+	</div>
+</a>
+</li> 
 
-{% block javascripts %}
-	<script src="js/accordions.js"></script>
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-const images = document.querySelectorAll('.categorie-image');
-const platsContainer = document.getElementById('plats-container');
+					 <img src="{{ asset(categorie.image) }}">
+					<div class="accordion-overlay cards">
+ <a class='btn-link' href="{{ path('app_plat_cat{'libelle'})') }}"></a> 
+<h2>{{ categorie.libelle }}</h2>
 
-images.forEach(image => {
-image.addEventListener('click', function () {
-const categorieId = this.getAttribute('data-categorie-id');
-fetchPlats(categorieId);
-});
+	<button class="btn-primary p-1">{{ categorie.plats }}</button>
 
-image.addEventListener('mouseover', function () {
-const categorieId = this.getAttribute('data-categorie-id');
-fetchPlats(categorieId);
-});
-});
+</div> 
 
-function fetchPlats(categorieId) {
-fetch(`/get-plats-by-categorie/${categorieId}`).then(response => response.json()).then(data => {
-platsContainer.innerHTML = '';
-data.plats.forEach(plat => {
-const platElement = document.createElement('div');
-platElement.innerHTML = `
-                                    <h3>${
-plat.name
-}</h3>
-                                    <p>${
-plat.description
-}</p>
-                                `;
-platsContainer.appendChild(platElement);
-});
-}).catch(error => console.error('Error fetching plats:', error));
-}
-});
-</script>
-
-	{# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> #}
-{% endblock %}{% endblock %}
+				{% endfor %}
+	
+			
+		</ul>
 
 
+<div class="container-fluid">
+	<div class="row">
+		{% for plat in plats %}
+			<div class="col-md-4">
+				<div class="card">
+<div class="card-body"><img src="{{ asset(plat.image) }} " class="plat-image">
+
+						<h5 class="card-title">{{ plat.libelle }}</h5>
+						<p class="card-text">{{ plat.description }}</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+	</div>
+</div> #}
+{# <div class="container-fluid">
+	<div class="row">
+		{% for plat in plats %}
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">{{ plat.libelle }}</h5>
+						<p class="card-text">{{ plat.description }}</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div> #}
+
+{# {% for plat in plats %}
+
+<div 
+id="plats_container" class="card"><img src="{{ asset(plat.image) }}" style="object-fit: cover;">
+
+  </div>
+{% endfor %} #}
 
 
+
+	{# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+{% endblock %}{% endblock %}#}

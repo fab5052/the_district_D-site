@@ -1,11 +1,29 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}The District : plats_cat{% endblock %}
 
 {% block body %}
 
+<h1>
+	{{ categorie.libelle }}</h1>
 
-<div class="container" id="mentions" >
+<div class="container-fluid">
+	<div class="row">
+		{% for plat in plats %}
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">{{ plat.libelle }}</h5>
+						<p class="card-text">{{ plat.description }}</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div> #}
+
+
+{# <div class="container" id="mentions" >
 <h1>Categorie: {{categorie.libelle}}</h1>
 </div>
 
@@ -24,7 +42,7 @@
         
 </div>  
   {% endfor %} 
-</div>
+</div> #}
 
 {% endblock %}
 
