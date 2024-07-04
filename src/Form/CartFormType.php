@@ -26,6 +26,7 @@ class CartFormType extends AbstractType
                 'label' => 'Nom'
             ])
             ->add('description')
+            ->add('quantite')
             ->add('prix', MoneyType::class, options:[
                 'label' => 'Prix',
                 'divisor' => 100,
@@ -35,9 +36,9 @@ class CartFormType extends AbstractType
                     )
                 ]
             ])
-            ->add('stock', options:[
-                'label' => 'Unités en stock'
-            ])
+            // ->add('stock', options:[
+            //     'label' => 'Unités en stock'
+            // ])
             ->add('plat', EntityType::class, [
                 'class' => Plat::class,
                 'choice_label' => 'libelle',

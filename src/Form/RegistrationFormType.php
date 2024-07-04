@@ -69,6 +69,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -84,7 +85,7 @@ class RegistrationFormType extends AbstractType
     {
         $builder
 
-        ->add('id', HiddenType::class, [
+            ->add('id', HiddenType::class, [
             'attr' => [
                 'class' => 'form-control'
             ],
@@ -162,6 +163,7 @@ class RegistrationFormType extends AbstractType
                 ],
                  'label' => 'En m\'inscrivant à ce site j\'accepte...  '
             ])
+         
         ;
     }
 

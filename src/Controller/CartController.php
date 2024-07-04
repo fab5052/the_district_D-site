@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
-   // #[IsGranted("ROLE_USER")]
+   //#[IsGranted("ROLE_USER")]
 #[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
 {
@@ -46,6 +46,8 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', compact('data', 'total'));
     }
 
+
+
     #[Route('/add/{id}', name: 'add')]
     public function add(Plat $plat, SessionInterface $session)
     {
@@ -68,40 +70,6 @@ class CartController extends AbstractController
         $session->set('panier', $panier);
         
         // On redirige vers la page du panier
-        return $this->redirectToRoute('cart_index');
-    }
-
-    #[Route('/validation', name: 'validation')]
-    public function validation( EntityManagerInterface $entityManagerInterface, SessionInterface $session)
-    {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
-        // On récupère le panier existant
-        $panier = $session->get('panier', []);
-
-        // On crée une nouvelle commande
-        $commande = new Commande();
-
-        foreach ($panier as $id => $quantite) {
-            $plat = $entityManagerInterface->getRepository(Plat::class)->find($id);
-
-            if ($plat) {
-                // On ajoute chaque plat à la commande
-                // Assurez-vous d'avoir une relation entre Commande et Plat dans votre entité Commande
-               // $commande->addPlat($plat, $quantite);
-            }
-        }
-
-        // On persiste la commande
-        $entityManagerInterface->persist($commande);
-        $entityManagerInterface->flush();
-
-        // On vide le panier
-        $session->remove('panier');
-
-        // On ajoute un message flash et on redirige
-        $this->addFlash('success', 'Commande validée avec succès');
-        
         return $this->redirectToRoute('cart_index');
     }
 

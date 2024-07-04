@@ -3,13 +3,22 @@
 {% block title %}Votre Profile !{% endblock %}
 
 {% block body %}
+{% block stylesheets %}
+	<link
+	rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+{% endblock %}
+
+
+
+
 <div class="container" id="mentions" >
 <h1>Connexion/Inscription</h1>
 </div>
 
 <div class="container d-flex justify-content-around mt-5 mb-5">
 
-{# {% if app.user and app.user.isVerified == false %}
+{% if app.user and app.user.isVerified == false %}
 
 
 	<div class="alert alert-warning alert-dismissible" role="alert">
@@ -19,7 +28,7 @@
 			<a href="{{ path('resend_verif') }}">renvoyer le lien d'activation</a>
 		</div>
 	</div>
-{% endif %} #}
+{% endif %}
 {% if app.user and app.user.isVerified == false %}
 
 

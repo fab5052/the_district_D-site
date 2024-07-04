@@ -57,7 +57,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
- #[IsGranted("ROLE_USER")]
+//  #[IsGranted("ROLE_USER")]
 #[Route('/profile', name: 'profile_')]
 class ProfileController extends AbstractController
 {
@@ -69,7 +69,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/commandes', name: 'profile')]
+    #[Route('/commande', name: 'profile')]
     public function commande(): Response
     {
         return $this->render('profile/profile.html.twig', [

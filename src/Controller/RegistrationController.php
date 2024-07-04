@@ -39,7 +39,7 @@ class RegistrationController extends AbstractController
       }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager, MailService $mail, JWTService $jwt): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager, MailService $ms, JWTService $jwt): Response
     {
         $user = new Utilisateur();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -52,22 +52,23 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+        
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            $header = [
-                'typ' => 'JWT',
-                'alg' => 'HS256'
-            ];
+        //     $header = [
+        //         'typ' => 'JWT',
+        //         'alg' => 'HS256'
+        //     ];
 
-            $payload = [
-                'utilisateur_id' => $user->getId()
-            ];
+        //     $payload = [
+        //         'utilisateur_id' => $user->getId()
+        //     ];
 
-            $token = $this->jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
+        //     $token = $this->jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
 
-            $entityManager->$mail->send(
+            $entityManager->$ms->sendEmail(
                 'no-reply@monsite.net',
                 $user->getEmail(),
                 'Activation de votre compte sur le site The District',
@@ -75,10 +76,20 @@ class RegistrationController extends AbstractController
                 compact('user', 'token')
             );
 
+        //     $form = $this->createForm(RegistrationFormType::class);
+        //     $form->handleRequest($request);
+
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $data = $form->getData();
+        //     $ms->sendEmail($data);
+        //     $ms->sendEmailConfirmation($data);
+        //     return $this->redirectToRoute('app_accueil');
+        // }
+
             return $userAuthenticator->authenticateUser(
                 $user,
-                $this->$authenticator,
-                $request
+                $this->$authenticator->target_path,
+                $request,
             );
         }
 
@@ -87,7 +98,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[IsGranted("ROLE_USER")]
+    //#[IsGranted("ROLE_USER")]
     #[Route('/verif/{token}', name: 'verify_user')]
     public function verifyUser($token): Response
     {

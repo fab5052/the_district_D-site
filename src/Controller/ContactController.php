@@ -17,7 +17,7 @@ class ContactController extends AbstractController
 {
 
 
-    #[IsGranted("ROLE_USER")]
+    //#[IsGranted("ROLE_USER")]
     public function mail(Request $request,MailService $ms)
     {
 

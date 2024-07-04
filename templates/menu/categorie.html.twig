@@ -6,21 +6,103 @@
 {% block body %}
 	{% block stylesheets %}
 
-
-		<style>
-			#plats-container {
-				transition: opacity 0.5s ease-in-out;
-				opacity: 0;
-				max-height: 0;
-				overflow: hidden;
-			}
-
-			#plats-container.show {
-				opacity: 1;
-				max-height: 1000px; /* Adjust based on expected content */
-			}
-		</style>
+<link rel="stylesheet" href="{{ asset('css/style.css')}}">
 	{% endblock %}
+
+	<style>
+#plats-container {
+	transition: opacity 0.5s 	tease-in-out;		
+	opacity: 0;			
+	max-height: 0;
+}
+
+.container-plats {
+flex-direction: row;
+height: 30vh;
+  margin: 15px;
+  display: flex;
+  
+}
+
+#plats-container.show {
+	opacity: 1;
+    min-height: 1000px;
+    overflow: hidden;
+
+		}
+
+a {
+color: rgba(255, 255, 255, 1.45);
+text-decoration: none;
+text-shadow: -1px -1px 4px rgba(0, 0, 0, 0.45);
+}
+
+a:hover {
+  color: rgba(255, 255, 255, 3);
+		}
+#plats-container.show .card {
+
+    border-image: linear-gradient(#000000, #4d9f0c) 30;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+    background-color: transparent;
+    border: none; 
+}
+
+.img-card {
+  height: 20vh;
+  width: 25vw;
+
+}
+
+
+{#}.button {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-link {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+
+}
+
+
+.btn-link:hover {
+  color: black;
+  background-color: white;
+}
+
+#}
+
+{#
+.description {
+  border: 2px solid rgb(179, 166, 166);
+  border-radius: 4px;
+} #}
+</style>
+
+<div>
+	<div class="bg"></div>
+	<div class="bg bg2"></div>
+	<div class="bg bg3"></div>
+	<div class="content"><img class="content" src="image/logo.png"></div>
+
+
+</div>
+
+<main>
+
+	<h1>
+
+		<script src='js/slogan.js'></script>
+	</h1>
+
 
 	<div class="container-fluid">
 		<div class="row">
@@ -30,8 +112,7 @@
 						<a href="#" class="categorie-link" data-categorie-id="{{ categorie.id }}">
 							<img src="{{ asset(categorie.image) }}" class="categorie-image">
 							<div class="accordion-overlay cards">
-								<h2>{{ categorie.libelle | upper }}</h2>
-<button class="btn-primary p-1">Plats</button>
+								<h2>{{ categorie.libelle }}</h2>
 
 							</div>
 							
@@ -39,23 +120,40 @@
 					</li>
 				{% endfor %}
 			</ul>
+<button class="btn-primary p-1">Plats</button>
+
+
 		</div>
 	</div>
 
-<div id="plats-container" class=" card">
 
 
-		
-<div class="card-body">
+
+
+<div id="plats-container"
+class="container-plats position-relative">
+<div class="mb-3 d-block">
+
+<div class="col-12 col-md-6 p-3 mb-4 d-flex justify-content-center">
+
+
+
+
+
+
 {# <img src="{{ asset(plat.image) }}" style=" object-fit: cover;"> #}
 
 
 						{# <h5 class="card-title">{{ plat.libelle }}</h5>
 						<p class="card-text">{{ plat.description }}</p> #}
-					</div>
-				</div>	
+					
+</div>	
+</div>
+</div>
+</main>
+
 		
-	
+
 
 	{% block javascripts %}
 		<script>
@@ -77,15 +175,16 @@ platsContainer.innerHTML = '';
 data.plats.forEach(plat => {
 const platElement = document.createElement('div');
   platElement.innerHTML = `
-      <div class="card">
-	     <div class="card-body"><img src='${plat.image}'>
-	    	 <h5 class="card-title">${plat.name}</h5>
+<div class="card d-flex">
+
+	     <div class="card-body"><img class="img-card" src='${plat.image}'>
+	    	 <h3 class="card-title">${plat.name}</h3>
 		     <p class="card-text">${plat.description}</p>
 <h5>${plat.prix}
 	€</h5>
 <div class='button'>
-	<button class='btn btn-link'>Ajouter au Panier:
-<a href="{{ path('app_cart') }}"></button>
+	<button class='btn btn-success'>Ajouter au Panier
+<a href="{{ path('app_validation') }}"></button>
 
 
 	   </div>
@@ -99,6 +198,8 @@ platsContainer.classList.add('show');
 }
 });
 		</script>
+<script src="js/accordion.js"></script>
+
 	{% endblock %}
 {% endblock %}
 

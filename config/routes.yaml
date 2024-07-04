@@ -18,9 +18,9 @@ controllers:
 #     path: /add
 #     controller : App\Controller\CatalogueController::add
 
-app_cart__form:
-    path: /_form
-    controller : App\Controller\CartController::_form
+# app_cart__form:
+#     path: /_form
+#     controller : App\Controller\CartController::_form
 
 
 # UtilisateurController
@@ -44,7 +44,7 @@ app_categorie:
     controller : App\Controller\MenuController::categorie
 
 app_plat :
-    path: /plat 
+    path: /plat
     controller : App\Controller\MenuController::plat
 
 # app_plat_cat :
@@ -60,13 +60,19 @@ get_plats_by_categorie:
 
 # CartController
 
-
 app_cart:
     path: /cart
     controller : App\Controller\CartController::index
 
-# ContactController
 
+#CommandeController
+
+app_commande:
+    path: /validation
+    controller : App\Controller\CommandeController::validation
+
+
+# ContactController
 
 app_contact : 
     path : /contact 
@@ -93,10 +99,10 @@ app_register :
 
 
 app_profile :
-    path : /profile
+    path : /
     controller : App\Controller\ProfileController::index
 
-app_detail_profile :
+app_detail :
     path : /detail
     controller : App\Controller\ProfileController::profile
 

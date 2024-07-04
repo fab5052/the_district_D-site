@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Votre Profile !{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+{% endblock %}
 
 {% block body %}
 
@@ -51,6 +55,7 @@
     </tr>
 </thead>
 
+{% if app.user and app.user.isVerified == false %}
 <tbody>
     <tr>
         <td>{{informations.nom}}</td>
@@ -61,6 +66,8 @@
         <td>{{informations.ville}}</td>
     </tr>
 </tbody>
+{% endif %}
+
 </table>
         </div>
     </div>

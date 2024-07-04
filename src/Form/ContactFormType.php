@@ -24,11 +24,11 @@ class ContactFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-         ->add('email', EntityType::class, [
+         ->add('nom', EntityType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'name',
+                'label' => 'Nom',
                 'required' => true
             ])
              ->add('email', EmailType::class, [

@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+{% endblock %}
+
 <main class="main-content">
 
     <div class="container">
@@ -46,7 +51,7 @@
                         </tr>
                     </tfoot>
                 </table>
-                <a href="{{ path('app_cart__form') }}" class="btn btn-primary">Valider le panier</a>
+                <a href="{{ path('app_commande') }}" class="btn btn-primary">Valider le panier</a>
             </div>
         </section>
     </div>

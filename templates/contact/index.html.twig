@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Formulaire de contact{% endblock %} 
 {% block body %}
 
-    
+	<link rel="stylesheet" href="{{ asset('css.style.css')}}">
+   
 {% use "bootstrap_5_layout.html.twig" %}
 
 
@@ -52,7 +54,7 @@
 
 
     {{ form_end(form) }}
-<{% endblock %}
+{% endblock %}
  </div>
         </div>
         </main>

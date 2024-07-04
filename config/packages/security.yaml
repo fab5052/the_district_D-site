@@ -27,16 +27,16 @@ security:
             logout:
                 path: app_logout
                 #target: app_login
-            #remember_me:
-              #  secret: '%kernel.secret%'
-               # lifetime: 604800
-             #   path: /
-              #  always_remember_me: true
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                always_remember_me: true
             
 
     access_control:
-        # - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/admin, roles: ROLE_ADMIN }
        

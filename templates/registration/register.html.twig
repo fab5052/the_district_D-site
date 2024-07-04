@@ -3,8 +3,10 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
-
+{% endblock %}
 
 
 
@@ -41,12 +43,12 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm._token) }}
+        {# {{ form_row(registrationForm._token) }} #}
 
 
 <div>
 	<p>Complexité du mot de passe :
-		<span id="entropy" class="text-red">Très faible</span>
+		<span id="entropy" class="text-red"></span>
 		(la complexité minimale acceptée est "Fort")</p>
 </div>
 

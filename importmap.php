@@ -26,7 +26,7 @@ return [
     ],
     'vue' => [
         'version' => '3.4.27',
-        'package_specifier' => 'vue/dist/vue.esm-bundler.js',
+        'package_specifier' => 'vue/dist/vue.    esm-bundler.js',
     ],
     '@vue/runtime-dom' => [
         'version' => '3.4.27',

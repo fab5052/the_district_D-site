@@ -1,4 +1,10 @@
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+{% endblock %}
+
 {{ form_start(cartForm) }}
+
     {{ form_row(cartForm.libelle) }}
     {{ form_row(cartForm.description) }}
     {{ form_row(cartForm.categorie) }}

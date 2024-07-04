@@ -71,9 +71,11 @@ public function getPlatsByCategorie(EntityManagerInterface $em, $id): JsonRespon
 
     foreach ($plats as $plat) {
         $data[] = [
+            'image' =>$plat->getImage(),
             'name' => $plat->getLibelle(),
             'description' => $plat->getDescription(),
-        ];
+            'prix' => $plat->getPrix()
+,        ];
     }
 
     return new JsonResponse(['plats' => $data]);
